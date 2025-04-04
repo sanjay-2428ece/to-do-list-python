@@ -1,0 +1,32 @@
+tasks = []
+
+def todo_list():
+    while True:
+        choice = input("\n1: Add | 2: View | 3: Complete | 4: Delete | 5: Exit\nEnter choice: ")
+        
+        if choice == "1":  # Add Task
+            task = input("Enter task: ")
+            tasks.append({"task": task, "done": False})
+
+        elif choice == "2":  # View Tasks
+            for i, t in enumerate(tasks, 1):
+                print(f"{i}. {t['task']} [{'✔' if t['done'] else '✖'}]")
+
+        elif choice == "3":  # Complete Task
+            idx = int(input("Enter task number to mark as done: ")) - 1
+            if 0 <= idx < len(tasks):
+                tasks[idx]["done"] = True
+
+        elif choice == "4":  # Delete Task
+            idx = int(input("Enter task number to delete: ")) - 1
+            if 0 <= idx < len(tasks):
+                tasks.pop(idx)
+
+        elif choice == "5":  # Exit
+            print("Goodbye!")
+            break
+        
+        else:
+            print("Invalid choice, try again.")
+
+todo_list()
